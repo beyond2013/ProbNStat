@@ -153,4 +153,4 @@ Technical and Trade journals and newspapers.
 Research organisations such as universities, and other institutions.
 In order to accept the secondary data as authoritative, one should critically examine the reliability of the compiler and the suitability of the data. The scope and object of the inquiry, sources of information and the degree of accuracy should also be carefully scrutinized.
 
-![link to related video lecture](https://www.youtube.com/watch?time_continue=10&v=XZgJvMQFkq0)
+[link to related video lecture](https://www.youtube.com/watch?time_continue=10&v=XZgJvMQFkq0)
