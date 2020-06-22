@@ -1,3 +1,5 @@
+**Credits: Contents presented here have been taken from the book Introduction to Statistical Theory Part 1 by Professor Sher Muhammad Chaudhry** 
+
 # Introduction to Statistics
 ## What is Statistics?
 Statistics is the science that includes procedures  and techniques used to collect, process and analyse numerical data to make inferences and to reach decisions in the face of uncertainty.
