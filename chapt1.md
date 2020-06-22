@@ -60,7 +60,7 @@ A quantitative variable may be classified as discrete or continuous.
 ### Variable Related Notations
 A variable whether countable or measurable, is generally denoted by some symbol such as X or Y. 
 
-X_i, or Y_j represents the ith or jth value of the variable.
+Xi, or Yj represents the ith or jth value of the variable.
 
 ## Errors of Measurement
 Experience has shown that a continuous variable can never be measured with perfect fineness because of certain habits and practices, methods of measurements, instruments used, etc. The measurements are thus always recorded correct to the nearest units and hence are of limited accuracy. 
