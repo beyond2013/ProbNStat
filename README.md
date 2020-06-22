@@ -8,13 +8,13 @@ This course begins by introducing  basic concepts of data and its types. Topics 
 
 At the end of the course, you students should be able to understand:
 
-    + Basic concepts of data and its types
-    + Methods for collecting, presenting and summarizing data
-    + Methodologies for regression and correlation analysis for future predictions
-    + Basic concepts and rules of probability along with important probability distributions
-    + Sampling concept, its types and techniques
-    + Estimating and hypothesis testing using main distributions
-    + Fundamental  skills for basic statistical computing using R.
++ Basic concepts of data and its types
++ Methods for collecting, presenting and summarizing data
++ Methodologies for regression and correlation analysis for future predictions
++ Basic concepts and rules of probability along with important probability distributions
++ Sampling concept, its types and techniques
++ Estimating and hypothesis testing using main distributions
++ Fundamental  skills for basic statistical computing using R.
 
 **Course Title: Probability and Statistics (MTS603)
 Credit Hours: 03
