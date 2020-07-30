@@ -6,4 +6,4 @@
 # Do not ignore fig directory
 !fig/
 .Rproj.user
-!presentation_of_datat/
+!presentation_of_data/
