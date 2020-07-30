@@ -1,0 +1,1302 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Presentation of Data},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Presentation of Data}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\textbf{NOTE:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Contents presented here have been taken from the book Introduction to
+  Statistical Theory Part 1 by Professor Sher Muhammad Chaudhry. Code
+  snippets (for creating graphs in R) have been taken from
+  \url{https://www.tutorialspoint.com}
+\item
+  This document will be updated incrementally. Make sure you have
+  downloaded the latest copy from the LMS.
+\end{enumerate}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+The device of gathering data often results in a massive volume of
+statistical data, which are in the form of individual measurements or
+counts. It is difficult to learn anything by examining the unorganized
+data which is more often confusing than clarifying. The mass of data is
+therefore to be organised and condensed into a form that can be more
+rapidly and easily understood and interpreted. For this purpose,
+techniques of classification, tabulation and graphic displays are
+presented in this chapter.
+
+\hypertarget{classification}{%
+\subsection{Classification}\label{classification}}
+
+The term classification is defined as the process of dividing a set of
+observations or objects into classes or groups in such a way that (i)
+observations or objects in the same class or group are similar, (ii)
+observations or objects in each class or group are dissimilar to
+observations or objects in other class or group. Classification is thus
+the sorting of data into homogeneous classes of groups according to
+their being alike or not. When the data are sorted according to one
+criterion only, it is called a simple classification or one-way
+classification.
+
+Classification is called a two-way classification when the data are
+sorted according to two criteria. A manifold classification or
+cross-classification is made according to several criteria.
+
+Data may also be classified according to qualitative, temporal and
+geographical characteristic. Arrangement of data according to the values
+of a variable characteristic is called a distribution. When the defining
+variable is expressed in terms of location, we get a spatial or
+geographical distribution. Temporal arrangement of values is referred to
+as a time series.
+
+\hypertarget{aims-of-classification}{%
+\subsection{Aims of Classification}\label{aims-of-classification}}
+
+The main aims of classification are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  to reduce the large sets of data to an easily understood summary;
+\item
+  to display the points of similarity and dissimilarity;
+\item
+  to save mental strain by eliminating unnecessary details;
+\item
+  to reflect the important aspects of the data; and
+\item
+  to prepare the ground for comparison and inference.
+\end{enumerate}
+
+\hypertarget{basic-principles-of-classification}{%
+\subsection{Basic Principles of
+Classification}\label{basic-principles-of-classification}}
+
+While classifying large sets of data, the following points should be
+taken into consideration.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The classes or categories into which the data are to be divided,
+  should be mutually exclusive and no overlap should exist between
+  successive classes. In other words, classes should be arranged so that
+  each observation or object can be placed in one and only one class.
+\item
+  The classes or categories should be all inclusive. All inclusive
+  classes are classes that include all the data.
+\item
+  As far as possible, the conventional classification procedure should
+  be adopted.
+\item
+  The classification procedure should not be so elaborate as to lead to
+  trivial classes nor it should be so crude as to concentrate all the
+  data in one or two classes.
+\end{enumerate}
+
+\hypertarget{tabulation}{%
+\subsection{Tabulation}\label{tabulation}}
+
+Tabulation means a systematic presentation of data classified under
+suitable heads and subheads, and placed in columns and rows. This sort
+of logical arrangement makes the data easy to understand, facilitates
+comparisons and provides an effective way to convey information to a
+reader.
+
+\hypertarget{types-of-tables}{%
+\subsection{Types of Tables}\label{types-of-tables}}
+
+Statistical tables are of two types, general purpose or primary tables,
+and specific purpose derived or text tables.
+
+General purpose tables are large in size, extensive with vast coverage
+and are constructed for reference purposes.
+
+Specific purpose tables are simpler in structure and deal with one or
+two criteria of classification only. Such tables are used to analyse or
+to assist in analyzing data.
+
+When the classification corresponds to one, two or many criteria or
+characteristics, the tabulation is called single, double or manifold
+tabulation respectively.
+
+Main parts of a statistical table are the title, the boxhead, the stub,
+the body, one or more prefatory notes, footnotes and a source.
+
+\hypertarget{main-parts-of-a-table-and-its-construction.}{%
+\subsection{Main Parts of a Table and its
+Construction.}\label{main-parts-of-a-table-and-its-construction.}}
+
+The main parts of a table and the general rules to be observed in
+constructing any table are described below:
+
+\textbf{(a) Title.} A table must have a self-explanatory title, which
+should usually tell us the ``what, where; how classified and when'' of
+the data, in that order. Some other important points are stated below:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  Titles should be brief in the form of phrases. Complete sentences are
+  unnecessary.
+\item
+  Abbreviations should not be used.
+\item
+  Main titles should be in capitals throughout. Sub-titles, if any,
+  should be in lower case letters with major words
+\end{enumerate}
+
+capitalized and should indicate clearly what the table describes.
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{3}
+\item
+  The different parts of a title should be separated by commas but no
+  full-stop at the end.
+\item
+  Words in titles should not be hyphenated except when really necessary.
+\item
+  If a title necessitates the use of two or more lines, an inverted
+  pyramid arrangement of the lines should be used.
+\end{enumerate}
+
+\textbf{(b) Column Captions and Boxhead.} The heading of each column is
+called a Column Caption, while the section of a table that contains the
+column captions, is referred to as Boxhead. Points to note here are
+given below:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\tightlist
+\item
+  The headings should be clear but concise.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\setcounter{enumi}{1}
+\item
+  They should be arranged in such a way that the most important
+  characteristic is placed in the first column. The column of totals is
+  usually placed at extreme right, but some people prefer the totals on
+  the left.
+\item
+  only the first word in each column caption should be capitalized. No
+  full stop should be put at the end.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{3}
+\item
+  Abbreviations, when clear, may be used.
+\item
+  Main caption should be centered over the column it is to span.
+\item
+  Extra lines should be used to avoid crowding in caption box.
+\item
+  Whenever possible, caption width should be made roughly proportional
+  to the size of numbers to be inserted.
+\end{enumerate}
+
+\textbf{(c) Row Captions and Stub.} The heading or title for a row, is
+called the Row Caption and the section containing the row captions is
+known as Stub. The necessary points in this respect are given below:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  The principles for column captions apply to row captions in stub.
+\item
+  If the stub is long and has several levels of classification, the
+  major classification should be capitalized to separate the table into
+  parts.
+\item
+  Whenever the figures have more than four or five significant digits,
+  the digits should be grouped in threes or fours. For example, one
+  should write 23 178 327, not 23178327.
+\item
+  In long tables, some space should be left after every five or ten
+  rows.
+\item
+  Totals should usually be placed at the bottom, but some prefer to
+  place them at the top.
+\item
+  Items in the stub should be arranged so as to facilitate easy reading.
+\item
+  Every stub should have an appropriate heading describing its contents.
+  This heading should be centered in the upper left box of the table.
+\end{enumerate}
+
+\textbf{(d) Prefatory Notes and Footnotes.} Explanatory notes
+incorporated in the table beneath the title and below the body, are
+called prefatory notes and footnotes respectively.
+
+Prefatory notes give additional specifications of the data indicative of
+items included or excluded for all data of the table, statements of the
+box, etc. They are placed between the title and the boxhead. The
+wording, should be in lower case alphabet.
+
+Footnotes are used to clarify anything in the table by giving a fuller
+description, by drawing attention incompleteness or by stating any
+special circumstances affecting the data. The footnotes should be
+specific in nature. They are placed immediately below the bottom line of
+the table, above the source. Footnote symbols should be placed , as
+follows:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  If they refer to an entire column or a set of columns, place them at
+  the end of the appropriate caption.
+\item
+  If they refer to an entire row or a set of rows, place them at the end
+  of the appropriate stub title.
+\item
+  If they refer to a single cell in the table, place beside the cell
+  entry in the body of the table.
+\end{enumerate}
+
+The footnotes should be indicated either by lower case alphabet enclosed
+in parentheses or by symbols as *, \(\dagger\), \(\ddagger\) etc. never
+by a number.
+
+\textbf{(e)Source Notes.} Every table should have a source note, unless
+the table is an original tabulation and its source is clear from the
+context. It is placed immediately below the table and below the
+footnotes, if any. The source notes must include the compiling agency,
+publication, date of publication and page as they are used as a means of
+verification and reference.
+
+\textbf{(f)Body and Arrangement of Data.} The body of a table is the
+most important part, which contains the entire data arranged in columns
+and rows. A rough-sketch enables us to have an idea about the number of
+columns and rows required.
+
+Arrangement of the data is made by taking into consideration the basis
+of classification and the purpose of the table. Thus the data may be
+arranged either:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\tightlist
+\item
+  according to the alphabetical order or ,\\
+\item
+  according to the time of occurrence or\\
+\item
+  according to location or\\
+\item
+  according to magnitude or importance, or\\
+\item
+  by a customary classification, e.g.~classifying as men, women and
+  children, etc. Whatever arrangements are used, the table should be
+  neat, simple and attractive to the eye.
+\end{enumerate}
+
+\textbf{(g)Spacing and Rulings.} A proper and judicious use of spacing
+and ruling enhances the effectiveness of a table and helps in separating
+or emphasizing certain items in it. Thick or double lines (rulings) are
+used for emphasis and for separating the title, the boxhead, the stub,
+etc., while parts under captions and related columns are separated by
+thin or single lines.
+
+\textbf{(h)General.} There are some other considerations too, that are
+enumerated below:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  A table should be simple. A complex table if possible, may be broken
+  into relatively simple tables.
+\item
+  Units of measurements and nature of the data should be specified in
+  title,, captions, etc. in parentheses.
+\item
+  Percentages should be clearly indicated as `per cent of total' etc.
+  and their total should invariably be shown as 100.0.
+\item
+  If the figures entered in the table are rounded off, this should be
+  indicated in the prefatory note or in the stub or caption.
+\item
+  Zeros need not be entered.
+\item
+  Minus signs are a part of the table and precede the number.
+\item
+  The relationship of the parts to the whole should be shown by thin or
+  heavy rulings.
+\item
+  The item or items to be emphasized should be placed in the most
+  prominent position of the table.
+\end{enumerate}
+
+The general sketch of a table is given below:
+
+\begin{figure}
+\centering
+\includegraphics{../fig/tablesketch.png}
+\caption{Sample sketch of a table}
+\end{figure}
+
+\hypertarget{frequency-distribution}{%
+\section{Frequency Distribution}\label{frequency-distribution}}
+
+The organization of a set of data in a table showing the distribution of
+the data into classes or groups together with the number of observations
+in each class or group is called a Frequency Distribution. The number of
+observations falling in a particular class is referred to as the class
+frequency or simply frequency and is denoted by f.~Data presented in the
+form of a frequency distribution are also called grouped data while the
+data in the original form are referred to as ungrouped data. The data
+are said to be arranged in an array when arranged in ascending or
+descending order of magnitude The purpose of a frequency distribution is
+to produce a meaningful pattern for the overall distribution of the data
+from which conclusions can be drawn. A fairly common frequency pattern
+is the rising to a peak and then declining. In terms of its
+construction, each class or group has lower and upper limits, lower and
+upper boundaries, an interval and a middle value.
+
+\hypertarget{class-limits}{%
+\subsection{Class-limits}\label{class-limits}}
+
+The class-limits are defined as the numbers or the values of the
+variables which describe the classes; the smaller number is the lower
+class limit and the larger number is the upper class limit. Class limits
+should be well defined and there should be no overlapping. In other
+words, the limits should be inclusive, i.e.~the values corresponding
+exactly to the lower limit or the upper limit be included in that class.
+The class-limits are therefore selected in such a way that they have the
+same number of significant places as the recorded values. Suppose the
+data are recorded to the nearest integers. Then an appropriate method
+for defining the class limits without overlapping, for example, may be
+10-14, 15-19, 20-24, etc. The class limits may be defined as 10.0-14.9,
+15.0---19.9, 20.0---24.9, etc. when the data are recorded to nearest
+tenth of an integer.Sometimes, a class has either no lower clags limit
+or no upper class-limit. Such a class is called an open- end class. The
+open-end classes, if possible, should be avoided as they are a hindrance
+in performing certain calculations. A class indicated as 10-15 will
+include 10 but not 15, i.e.~10 \textless{} X \textless{} 15.
+
+\hypertarget{class-boundaries.}{%
+\subsection{Class-boundaries.}\label{class-boundaries.}}
+
+The class-boundaries are the precise numbers which separate one class
+from age selection of these numbers removes the difficulty, if any, in
+kno ng the class to which a particular value should be assigned. A
+class-boundary is located midway between the upper limit of a class and
+the lower limit of the next higher class, e.g.~9.5-14.5, 14.5-19.5,
+19.5-24.5, or 9.95-14.95, 14.95-19.95, etc. The class-boundariés are
+thus always defined more precisely than the level of measurements being
+used so that the possibility of any observation falling exactly on the
+boundary is avoided. That is why the class boundaries carry one more
+decimal place than the class limits or the observed values. The upper
+class boundary of a class coincides with the lower class boundary of the
+next class.
+
+\hypertarget{class-mark}{%
+\subsection{Class Mark}\label{class-mark}}
+
+A class mark, also called class midpoint, is that number which divides
+each class into two equal spt practice, it is obtained by dividing
+either the sum of the lower and upper limits of a class, or the sum of
+the lower and upper boundaries of the class by 2 but in a few cases, it
+does not hold, particularly in modern practice of age grouping. For.
+purposes of calculations, the frequency in a particular class is assumed
+to have the same value as the class-mark or midpoint. This assumption
+may introduce an error, called the grouping error, but statistical
+experience has shown that such errors usually tend to counterbalance
+over the entire distribution. The grouping error may also be minimized
+by selecting a class (group) in such a way that its midpoint corresponds
+to the mean of the observed values falling in that class.
+
+\hypertarget{class-width-or-interval.}{%
+\subsection{Class Width or Interval.}\label{class-width-or-interval.}}
+
+the class-width or interval of a class is equal to the difference
+between the class boundaries. It may also be obtained by finding the
+difference either between two successive lower class limits, or between
+two successive class marks) The lower limit of a class should not be
+subtracted from its upper limit to get the class interval. An equal
+class interval, usually denoted by hf or c, facilitates the calculations
+of statistical constants such as the mean, the standard deviation,
+moments, etc. That is why in practice, it is desirable to have equal
+class-intervals. But in some types of economic and medical data, it is
+wise to use unequal class-intervals on account of greater concentration
+of measurements in certain classes. Such class intervals usually become
+uniform when logarithms of class marks are taken. It should be noted
+that some people use the terms ``class'' and ``class- interval''
+interchangeably and the width of the class is referred to as the size or
+length of the class-interval.
+
+\hypertarget{constructing-a-grouped-frequency-distribution}{%
+\subsection{Constructing a Grouped Frequency
+Distribution}\label{constructing-a-grouped-frequency-distribution}}
+
+The following are some basic rules that should be kept. in mind when
+constructing a grouped frequency distribution:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  Decide on the number of classes into which the data are to be grouped.
+  There are no hard and fast rules for deciding on the number of classes
+  which actually depends on the size of data. Statistical experience
+  tells us that no less than 5 and no more than 20 classes are generally
+  used if Use of too many classes will defeat the purpose of
+  condensation and too few will result in too much loss of information.
+  H.A. Sturges has proposed an empirical rule for determining the number
+  of classes into which a set of observations should be grouped. The
+  rule is \(k = 1 + 3.3 * logN\), where k denotes the number of classes
+  and N is the total number of observations. For example, if there are
+  100 observations, then by applying Sturges' rule, we should have
+  \(k=1+3.3 (2.0000) = 7.6\), i.e.~8 classes Thus eight classes are
+  required but this rule is rarely used in practice.
+\item
+  Determine the range of variation in the data, i.e.~the difference
+  between the largest and the smallest values in the data.
+\item
+  Divide the range of variation by the number of classes to determine
+  the approximate width or size of the equal class-intervals. In case of
+  fractional results, the next higher whole number is usually taken as
+  the size or width of class-interval. If equal class-intervals are
+  inconvenient or may be undesirable, then classes of unequal size are
+  used. But in practice, intervals that are multiple of 5 or 10, are
+  commonly used as people can understand them more readily.
+\item
+  Decide where to locate the class limit of the lowest class - and then
+  the lower class boundary. The lowest class usually starts with the
+  smallest data value or a number less than it. It is better if it is a
+  multiple of class-interval. Find the upper class boundary by adding
+  the width of the class-interval to the lower class-boundary and write
+  down the upper class limits too, The open-end classes, i.e.~classes
+  with the lowermost or uppermost class boundary unknown, should be
+  avoided if possible.
+\item
+  Determine the remaining class-limits and class boundaries by adding
+  the class-interval repeatedly. The lowest class should be placed at
+  the top and the rest should follow according to size. In some cases,
+  the highest class is placed at the top.
+\item
+  Distribute the data into the appropriate classes. This is best done by
+  using a ``Tally-Column'' where values are tabulated against
+  appropriate classes by merely making short bars or tally marks to
+  represent them) It is customary for convenience in counting to place
+  the first four bars vertically and the fifth one diagonally and to
+  leave a space. The number of tallies is then written in the frequency
+  column. The tally column is usually omitted in the final presentation
+  of the frequency distribution. But in case of small number of values,
+  the actual values should be shown against each class to mitigate
+  chances of error.
+\item
+  Finally, total the frequency column to see that all the data have been
+  accounted for.
+\end{enumerate}
+
+These rules are applied to group raw data which are assumed to be
+continuous. In case of discrete data which carry only integral values,
+the concept of a class boundary is unrealistic as there can be no points
+where the adjoining classes meet. In spite of this logical difficulty,
+when the discrete data are sufficiently large, they are treated for
+convenience of calculations as continuous and hence are grouped in the
+same way as the continuous data.
+
+\hypertarget{example}{%
+\subsubsection{Example}\label{example}}
+
+Make a grouped frequency distribution from the following data, relating
+to the weight recorded to the nearest grams of 60 apples picked out at
+random from a consignment.
+
+\textbf{Data}
+
+\hypertarget{data}{%
+\label{data}}%
+\begin{verbatim}
+106 107 76 82 109 107 115 93 187 95 123 125 
+111 92 86 70 126 68 130 129 139 119 115 128 
+100 186 84 99 113 204 111 141 136 123 90 115 
+98 110 78 185 162 178 140 152 173 146 158 194
+148 90 107 181 131 75 184 104 110 80 118 82.
+\end{verbatim}
+
+By scanning the data, we find that the largest weight is 204 grams and
+the smallest weight is 68 grams so that the range is 204---68 = 136
+grams.
+
+Suppose we decide to take 7 classes of equal size. Then size or width of
+the equal class interval would be \(136/7 = 19.47\). But we take h=20,
+the next integral value higher than 19.47 to facilitate the numerical
+work.
+
+Let us decide to locate the lower limit of the lowest class at 65. With
+this choice, the class limits will be 65-84, 85-104, 105-124, \ldots,
+the class boundaries become 64.5---84.5, 84.5-104.5, 104.5-124.5,
+\ldots, and the class marks are 74.5, 94.5, 114.5\ldots{} The grouped
+frequency distribution is then constructed as follows:
+
+\hypertarget{by-listing-the-actual-values}{%
+\paragraph{By listing the actual
+values:}\label{by-listing-the-actual-values}}
+
+\begin{longtable}[]{@{}lll@{}}
+\caption{FREQUENCY DISTRIBUTION OF WEIGHTS OF 60 APPLES}\tabularnewline
+\toprule
+Weight & Entries & Frequency\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Weight & Entries & Frequency\tabularnewline
+\midrule
+\endhead
+65 - 84 & 76, 82, 70, 68, 84, 78, 75, 80, 82 & 9\tabularnewline
+85 - 104 & 93, 95, 92, 86,100, 99, 90, 98, 90, 104 & 10\tabularnewline
+105 - 124 & 106, 107, 109, 107, 115, 123, 111, 119,115, &
+17\tabularnewline
+& 113, 111, 123, 115, 110, 107, 110,118 &\tabularnewline
+125 - 144 & 125, 126, 130, 129, 139, 128, 141, 136, 140, 131 &
+10\tabularnewline
+145 - 164 & 162, 152, 146, 158, 148 & 5\tabularnewline
+165 - 184 & 178, 173, 181, 184 & 4\tabularnewline
+185 - 204 & 187, 186, 204, 185, 194 & 5\tabularnewline
+Total & & 60\tabularnewline
+\bottomrule
+\end{longtable}
+
+This table is sometimes known as an entry table. The values against each
+class may be arranged in an array.
+
+\hypertarget{by-using-a-tally-column}{%
+\paragraph{By using a tally column}\label{by-using-a-tally-column}}
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Frequency distribution using a tally column}\tabularnewline
+\toprule
+Weight & Class Boundary & Class Marks & Tally & Frequency\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Weight & Class Boundary & Class Marks & Tally & Frequency\tabularnewline
+\midrule
+\endhead
+65 - 84 & 64.5 - 84.5 & 74.5 & IIIII IIII & 9\tabularnewline
+85 - 104 & 84.5 - 104.5 & 94.5 & IIIII IIIII & 10\tabularnewline
+105 - 124 & 104.5 - 124.5 & 114.5 & IIIII IIIII IIIII II &
+17\tabularnewline
+125 - 144 & 124.5 - 144.5 & 134.5 & IIIII IIIII & 10\tabularnewline
+145 - 164 & 144.5 - 164.5 & 154.5 & IIIII & 5\tabularnewline
+165 - 184 & 164.5 - 184.5 & 174.5 & IIII & 4\tabularnewline
+185 - 204 & 184.5 - 204.5 & 194.5 & IIIII & 5\tabularnewline
+Total & & & & 60\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{cumulative-frequency-distribution.}{%
+\subsection{Cumulative Frequency
+Distribution.}\label{cumulative-frequency-distribution.}}
+
+The total frequency of a variable from its one end to a certain value
+(usually upper class boundary in grouped data), called the base, is
+known as the cumulative frequency, less than or more than the base of
+the variable.A table that shows the cumulative frequencies, is called a
+cumulative frequency distribution. The cumulative frequency of the last
+class is the sum of all frequencies in the distribution. If the
+cumulation process is from the lowest value to the highest, it is
+referred to as ``a less than'' type cumulative frequency distribution.
+For example, let us consider a frequency distribution having k classes,
+each of width h. Let us denote the midpoint of the ith class by
+x\textsubscript{i} With frequency f\textsubscript{i} such that
+\(\sum_{i=1}^{k} f_i = n\)
+
+Now the lower class-boundary of the first group is \(x1-h/2\) and the
+upper class boundaries are \(x~i~ +h/2\), (i=1, 2, \ldots., k). The
+cumulative frequency distribution is then obtained by adding each
+successive frequency to the cumulative total of frequencies for the
+preceding classes as shown below:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Class boundary & Cumulative Frequency\tabularnewline
+\midrule
+\endhead
+less than x1 --- h/2 & 0\tabularnewline
+less than x1 + h/2 & f1.\tabularnewline
+less than x2 + h/2 & f1 + f2\tabularnewline
+less than x3 + h/2 & f1 + f2 + f3\tabularnewline
+less than xk + h/2 & \(\sum f_i = n\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+It should be noted that a less than type cumulative frequency
+distribution starts with the lower class boundary of the first group
+indicating that there is no frequency below \(x~1~ - h/2\).
+
+When the frequencies are cumulated from the highest value to the lowest
+value, it is called a ``more than'' type cumulative frequency.
+
+If the class frequencies against various classes are divided by the
+total frequency, we get the relative frequencies which always add to
+one. The class frequencies may also be expressed as Percentages, the
+total of which would be 100. A percentage cumulative distribution is
+useful to read off the percentage of values falling between certain
+specified values.
+
+\hypertarget{example-1}{%
+\subsubsection{Example:}\label{example-1}}
+
+Construct i) a ``less than'' type cumulative distribution and (ii) a
+``more than'' type cumulative distribution from the from the frequency
+distribution of weights of 60 apples of \protect\hyperlink{data}{Data}.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\tightlist
+\item
+  A ``less than'' type cumulative frequency distribution is shown below:
+\end{enumerate}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Weight (grams) & Cumulative Frequency(F)\tabularnewline
+\midrule
+\endhead
+Less than 64.5 & 0\tabularnewline
+Less than 84.5 & 9\tabularnewline
+Less than 104.5 & 19\tabularnewline
+Less than 124.5 & 36\tabularnewline
+Less than 144.5 & 46\tabularnewline
+Less than 164.5 & 51\tabularnewline
+Less than 184.5 & 55\tabularnewline
+Less than 204.5 & 60\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  A ``more than'' type cumulative frequency distribution is given below:
+\end{enumerate}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Weight (grams) & Cumulative Frequency(F)\tabularnewline
+\midrule
+\endhead
+More than 64.5 & 60\tabularnewline
+More than 84.5 & 51\tabularnewline
+More than 104.5 & 41\tabularnewline
+More than 124.5 & 24\tabularnewline
+More than 144.5 & 14\tabularnewline
+More than 164.5 & 9\tabularnewline
+More than 184.5 & 5\tabularnewline
+More than 204.5 & 0\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{stem-and-leaf-display}{%
+\subsection{Stem-and-Leaf Display}\label{stem-and-leaf-display}}
+
+A clear disadvantage of using a frequency table is that the identity of
+individual observations is lost in grouping process. To overcome this
+drawback, John Tukey (1977) introduced a technique known as the
+Stem-and-Leaf Display. This technique offers a quick and novel way for
+simultaneously sorting and displaying data sets where each number in the
+data set is divided into two parts, a-Stem and a Leaf. A stem is the
+leading digit(s) of each number and is used in sorting, while a leaf is
+the rest of the number or the trailing digit(s) and shown in display. A
+vertical line separates the leaf (or leaves) from the stem. For example,
+the number 243 could be split two ways:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+leading digit & trailing digits\tabularnewline
+\midrule
+\endhead
+2 & 43\tabularnewline
+stem & leaf\tabularnewline
+\bottomrule
+\end{longtable}
+
+OR
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+leading digit & trailing digit\tabularnewline
+\midrule
+\endhead
+24 & 3\tabularnewline
+stem & leaf\tabularnewline
+\bottomrule
+\end{longtable}
+
+All possible stems are arranged in order from the smallest to the
+largest and placed on the left hand side of the line.
+
+The stem-and-leaf display is a useful step for listing the data in an
+array, leaves are associated with the stem to know the numbers. The
+stem-and-leaf table provides a useful description of the data set and
+can easily be converted to a frequency table. It is a common practice to
+arrange the trailing digits in each row from smallest to highest.
+
+\hypertarget{example-2}{%
+\subsubsection{Example:}\label{example-2}}
+
+The ages of 30 patients admitted to a certain hospital during a
+particular week were as follows:
+
+48, 31, 54, 37, 18, 64, 61, 43, 40, 71, 51, 12, 52, 65, 53 42, 39, 62,
+74, 48, 29, 67, 30, 49, 68, 35, 57, 26, 27, 58.
+
+Construct a stem-and-leaf display from the data and list the data in an
+array.
+
+A scan of the data indicates that the observations range (in age) from
+12 to 74. We use the first (or leading) digit as the stem and the second
+(or trailing) digit as the leaf. The first observation is 48,, which has
+a stem of 4 and a leaf of 8, the second a stem of 3 and a leaf of 1,
+etc. Placing the leaves in the order in which they appear in the data,
+we get the stem-and-leaf display as shown below:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Stem (leading digit) & Leaf (trailing digit)\tabularnewline
+\midrule
+\endhead
+1 & 8 2\tabularnewline
+2 & 9 6 7\tabularnewline
+3 & 1 7 9 0 5\tabularnewline
+4 & 8 3 0 2 8 9\tabularnewline
+5 & 4 1 2 3 7 8\tabularnewline
+6 & 4 1 5 2 7 8\tabularnewline
+7 & 1 4\tabularnewline
+\bottomrule
+\end{longtable}
+
+To get the array, we associate the leaves in order of size with the
+stems as shown below:
+
+12, 18, 26, 27, 29, 30, 31, 35, 37, 39, 40, 42, 43, 48, 48, 49, 51, 52,
+53, 54, 57, 58, 61, 62, 64, 65, 67, 68, 71, 74.
+
+\hypertarget{graphical-representation}{%
+\subsection{Graphical Representation}\label{graphical-representation}}
+
+Tabulation, we know, is a good method of condensing and representing
+statistical data in a readily understandable form, but many people have
+no taste for figures. They would prefer,a way of representation where
+figures could be avoided. This poses is achieved by the presentation of
+statistical data in a visual form`` The visual display of statistical
+data in the form of points, lines, areas and other geometrical forms and
+symbols is in the most general terms known as Graphical Representation.
+Statistical data can be studied with this method without going through
+figures, presented in the form of tables.
+
+Such visual representation can be divided into two main groups, graphs
+and diagrams to be described in the sections that follow. The basic
+difference between a graph and a diagram is that a graph is a
+representation of data by a continuous curve, usually shown on a graph
+paper while a diagram is any other one, two or three--dimensional form
+of visual representation.
+
+\hypertarget{diagrams}{%
+\subsection{Diagrams}\label{diagrams}}
+
+Diagrammatic representation is best suited to spatial series and data
+split into different categories. Whenever a comparison of the same type
+of data at different places is to be made, diagrams will be the best way
+to do that. Diagrammatic representation has several advantages over
+tabular representation of figures. Beautifully and neatly constructed
+diagrams are more attractive than simple figures. Diagrams, being a
+visual display, leave more effective and long lasting impression on the
+mind of a reader. They make unwieldy data intelligible at a glance.
+Comparison is made easier with diagrams. Diagrams have some
+disadvantages too. Diagrams are less accurate than tables; cost money
+and time and the amount of information conveyed is limited. However,
+this method of representation is excessively used in business and
+administration.
+
+Different types of diagrams or charts commonly used for displaying
+statistical data are described below:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  Linear or One-Dimensional Diagrams. They consist of Simple Bars,
+  Multiple Bars and Component Bar charts. Here the values are
+  represented only by one dimension, generally the length of the bar.
+\item
+  Areal or Two-Dimensional Diagrams. They consist of Rectangles,
+  Sub-divided Rectangles and Squares, the areas of which are
+  proportional to the values of the given quantities. This device is
+  used to represent data having moderately large variations.
+\item
+  Cubic or Three-Dimensional Diagrams. They are in the form of Cubes and
+  Cylinders, whose volumes are proportional to the values they
+  represent. These diagrams are used when the variation among the values
+  of the data to be portrayed is so large that even the square roots of
+  the values concerned fail to reduce the variation appreciably.
+\item
+  Pie-Diagrams. They are in the form of Circles and Sectors. Here the
+  areas of circles or sectors are in proportion to the values they
+  represent or compare.
+\item
+  Pictograms. They consist of pictures or small symbolic figures
+  representing the statistical data. A pictogram is an effective way of
+  visual comparisons. For example, we can compare the armed strength of
+  various countries by drawing pictures of the number of soldiers, where
+  each pictorial soldier may denote, say, 1,000 soldiers. In a similar
+  way, the production of wheat can be compared by means of the pictures
+  of wheat bags of a specified size. It is essential to repeat the
+  pictures a number of times to represent the differences in magnitudes.
+\end{enumerate}
+
+While drawing diagrams, the following points should be kept in mind:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  An appropriate scale consistent with the size of paper available and
+  the size of the data to be represented, should be chosen and indicated
+  either at the side or at the bottom of the diagram. This scale must
+  start at zero.
+\item
+  A diagram like a table, must have a title, which should be brief and
+  self-explanatory. A key, footnote or source will also be necessary.
+\item
+  A diagram should be shaded, coloured or cross-hatched to show the
+  different parts, if any.
+\item
+  Lettering should be shown horizontally.
+\end{enumerate}
+
+\hypertarget{simple-bar-chart.}{%
+\subsubsection{Simple Bar Chart.}\label{simple-bar-chart.}}
+
+A simple bar chart consists of horizontal or vertical bars of equal
+widths and lengths proportional to the values they represent. As the
+basis of comparison is linear or one-dimensional, the widths of these
+bars have no significance but are taken to make the chart look
+attractive. The space separating the bars should not exceed the width of
+the bar and should not be less than half of its width. The bars should
+neither be exceedingly long and narrow nor short and broad. The vertical
+bar chart is an effective way for presenting a time series and
+qualitatively classified data whereas horizontal bars are useful for
+geographical or spatial distributions. The data when do not relate to
+time, should be arranged in ascending or descending order before
+charting.
+
+\hypertarget{creating-a-simple-bar-chart-using-r}{%
+\paragraph{Creating a Simple Bar Chart using
+R}\label{creating-a-simple-bar-chart-using-r}}
+
+R uses the function \texttt{barplot()} to create bar charts. R can draw
+both vertical and horizontal bars in the bar chart. In bar chart each of
+the bars can be given different colors.
+
+\textbf{Syntax} The basic syntax to create a bar-chart in R is
+
+\texttt{barplot(H,xlab,ylab,main,\ names.arg,col)}
+
+Following is the description of the parameters used
+
+\begin{itemize}
+\tightlist
+\item
+  H is a vector or matrix containing numeric values used in bar chart.
+\item
+  xlab is the label for x axis.
+\item
+  ylab is the label for y axis.
+\item
+  main is the title of the bar chart.
+\item
+  names.arg is a vector of names appearing under each bar.
+\item
+  col is used to give colors to the bars in the graph.
+\end{itemize}
+
+\textbf{Example}
+
+Draw a simple bar diagram to represent the turnover of a company for 5
+years.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Years & Turnover\tabularnewline
+\midrule
+\endhead
+1965 & 35000\tabularnewline
+1966 & 42000\tabularnewline
+1967 & 43500\tabularnewline
+1968 & 48000\tabularnewline
+1969 & 48500\tabularnewline
+\bottomrule
+\end{longtable}
+
+Here is how to do it using R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Years \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1965}\NormalTok{, }\DecValTok{1966}\NormalTok{, }\DecValTok{1967}\NormalTok{, }\DecValTok{1968}\NormalTok{, }\DecValTok{1969}\NormalTok{)}
+\NormalTok{Turnover \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{35000}\NormalTok{, }\DecValTok{42000}\NormalTok{, }\DecValTok{43500}\NormalTok{, }\DecValTok{48000}\NormalTok{, }\DecValTok{48500}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(Turnover, }\DataTypeTok{names.arg=}\NormalTok{Years, }\DataTypeTok{xlab =} \StringTok{"Years"}\NormalTok{, }\DataTypeTok{ylab=} \StringTok{"Turnover"}\NormalTok{,}
+                \DataTypeTok{col=}\StringTok{"blue"}\NormalTok{,  }
+                \DataTypeTok{main=}\StringTok{" Bar Diagram Showing the Turnover of a company for 5 years"}\NormalTok{,  }
+                \DataTypeTok{cex.main=}\FloatTok{0.7}\NormalTok{,}
+                \DataTypeTok{border=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/Simple bar chart-1.pdf}
+
+in order to draw horizontal bar diagram use the following code snippet
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Years \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1965}\NormalTok{, }\DecValTok{1966}\NormalTok{, }\DecValTok{1967}\NormalTok{, }\DecValTok{1968}\NormalTok{, }\DecValTok{1969}\NormalTok{)}
+\NormalTok{Turnover \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{35000}\NormalTok{, }\DecValTok{42000}\NormalTok{, }\DecValTok{43500}\NormalTok{, }\DecValTok{48000}\NormalTok{, }\DecValTok{48500}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(Turnover, }\DataTypeTok{names.arg=}\NormalTok{Years, }\DataTypeTok{xlab =} \StringTok{"Years"}\NormalTok{, }\DataTypeTok{ylab=} \StringTok{"Turnover"}\NormalTok{,}
+                \DataTypeTok{col=}\StringTok{"blue"}\NormalTok{,  }
+                \DataTypeTok{horiz=}\OtherTok{TRUE}\NormalTok{,  }
+                \DataTypeTok{main=}\StringTok{" Bar Diagram Showing the Turnover of a company for 5 years"}\NormalTok{,  }
+                \DataTypeTok{cex.main=}\FloatTok{0.7}\NormalTok{,}
+                \DataTypeTok{border=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/simple bar chart horizontal-1.pdf}
+
+\hypertarget{multiple-bar-chart}{%
+\subsubsection{Multiple Bar Chart}\label{multiple-bar-chart}}
+
+A multiple bar chart shows two or more characteristics corresponding to
+the values of a common variable in the form of grouped bars, whose
+lengths are proportional to the values of the characteristics, and each
+of which is shaded or colored differently to aid identification. This is
+useful for comparison of two or three kinds of information. For example
+imports, exports, and productions of a country can be compared from year
+to year by grouping the three together.
+
+\textbf{Example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{years \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{\textquotesingle{}1965{-}66\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}1970{-}71\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}1975{-}76\textquotesingle{}}\NormalTok{)}
+\NormalTok{area \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2866}\NormalTok{,}\DecValTok{3233}\NormalTok{,}\DecValTok{3420}\NormalTok{)}
+\NormalTok{production \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1588}\NormalTok{, }\DecValTok{2229}\NormalTok{,}\DecValTok{1937}\NormalTok{)}
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(years, area, production)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{), }\DataTypeTok{xpd=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{colors \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)}
+
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(area,production) }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{years,  }
+         \DataTypeTok{data=}\NormalTok{df, }\DataTypeTok{beside=}\OtherTok{TRUE}\NormalTok{,  }
+         \DataTypeTok{col=}\NormalTok{colors,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{3500}\NormalTok{),}
+         \DataTypeTok{main=}\StringTok{"Area and production of Cotton in Punjab"}\NormalTok{,}
+        \DataTypeTok{cex.main=}\FloatTok{0.7}
+\NormalTok{       )}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{inset=}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\FloatTok{0.2}\NormalTok{,}\DecValTok{0}\NormalTok{), }
+       \KeywordTok{c}\NormalTok{(}\StringTok{"area"}\NormalTok{, }\StringTok{"production"}\NormalTok{), }\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{,  }\DataTypeTok{fill =}\NormalTok{ colors)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/Mutliple bar chart-1.pdf}
+
+\hypertarget{component-bar-chart}{%
+\subsubsection{Component Bar Chart}\label{component-bar-chart}}
+
+A component bar chart is an effective technique in which each bar is
+divided into two or more sections, proportional in size to the component
+parts of a total being displayed by each bar. The various component
+parts shown as sections of the bar, are shaded or colored differently to
+increase the overall effectiveness of the diagram. Component bar charts
+are used to represent the cumulation of various components of data and
+the percentages. They are also known as sub-divided bars.
+
+\textbf{Example} Draw a component bar chart for the following data:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Division & Both genders & Male & Female\tabularnewline
+\midrule
+\endhead
+Peshawar & 64 & 33 & 31\tabularnewline
+Rawalpindi & 40 & 21 & 19\tabularnewline
+Sargodha & 60 & 32 & 28\tabularnewline
+Lahore & 65 & 35 & 30\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)}
+
+\NormalTok{division =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Peshawar"}\NormalTok{, }\StringTok{"Rawalpindi"}\NormalTok{, }\StringTok{"Sargodha"}\NormalTok{, }\StringTok{"Lahore"}\NormalTok{)}
+
+\NormalTok{Values \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{33}\NormalTok{,}\DecValTok{31}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{19}\NormalTok{,}\DecValTok{32}\NormalTok{,}\DecValTok{28}\NormalTok{,}\DecValTok{35}\NormalTok{,}\DecValTok{30}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{2}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{4}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{xpd=}\OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{barplot}\NormalTok{(Values, }\DataTypeTok{names.arg =}\NormalTok{ division, }\DataTypeTok{col=}\NormalTok{ colors, }
+        \DataTypeTok{main =} \StringTok{"component bar chart showing population of 4 divisions"}\NormalTok{,}
+        \DataTypeTok{cex.main=}\FloatTok{0.7}\NormalTok{,}
+        \DataTypeTok{xlab=}\StringTok{"divisions"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"population"}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{70}\NormalTok{))}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{inset=}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\FloatTok{0.2}\NormalTok{,}\DecValTok{0}\NormalTok{),}
+       \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{), }\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{fill=}\NormalTok{colors, }\DataTypeTok{horiz =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/component bar chart-1.pdf}
+
+\hypertarget{rectangles-and-sub-divided-rectangles}{%
+\subsubsection{Rectangles and sub-divided
+rectangles}\label{rectangles-and-sub-divided-rectangles}}
+
+In subdivided rectangle charts the area of a rectangle is equal to the
+product of its length and breadth. To represent a quantity by a
+rectangle, both length and breadth of the rectangle are used. Sub
+divided rectangles are drawn for the data where the quantities along
+with their components are to be compared. These diagrams are generally
+drawn to compare the budgets of various families. In the construction of
+sub-divided rectangles, we are required to:
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  change each component into the percentage of the corresponding total,
+\item
+  draw one rectangle for each total, taking equal lengths(100 units),
+  and breadths proportional to the totals,
+\item
+  divide every rectangle so drawn into parts equal in number to the
+  number of components. Each part shaded or colored will represent
+  percentage size of one component.
+\end{enumerate}
+
+\textbf{Example} Compare the budgets of families A and B with a suitable
+diagram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{items \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Food\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Clothing\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}House Rent\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Education\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Litigation\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Conventional Needs\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Miscellaneous\textquotesingle{}}\NormalTok{)}
+\NormalTok{familyA \textless{}{-}}\KeywordTok{c}\NormalTok{(}\DecValTok{24}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{familyB \textless{}{-}}\KeywordTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{,}\DecValTok{14}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{df =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(items, familyA, familyB)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                items familyA familyB
+## 1               Food      24      60
+## 2           Clothing       4      14
+## 3         House Rent       4      16
+## 4          Education       3       6
+## 5         Litigation       2      10
+## 6 Conventional Needs       1       6
+## 7      Miscellaneous       2       8
+\end{verbatim}
+
+To calculate percentages for creating sub-divided rectangles following
+code is required
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{familyAPerc \textless{}{-}}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(familyA) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\NormalTok{familyBPerc \textless{}{-}}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(familyB) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{cbind.data.frame}\NormalTok{(items, familyA, familyAPerc, familyB, familyBPerc)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                items familyA familyAPerc familyB familyBPerc
+## 1               Food      24        60.0      60   50.000000
+## 2           Clothing       4        10.0      14   11.666667
+## 3         House Rent       4        10.0      16   13.333333
+## 4          Education       3         7.5       6    5.000000
+## 5         Litigation       2         5.0      10    8.333333
+## 6 Conventional Needs       1         2.5       6    5.000000
+## 7      Miscellaneous       2         5.0       8    6.666667
+\end{verbatim}
+
+To create the plot following code is used:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subdf \textless{}{-}}\StringTok{ }\NormalTok{df[, }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{xpd=}\NormalTok{T, }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\FloatTok{1.4}\NormalTok{,}\FloatTok{0.2}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(subdf),  }\DataTypeTok{width=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{1.2}\NormalTok{), }\DataTypeTok{legend.text =}\NormalTok{ df}\OperatorTok{$}\NormalTok{items, }\DataTypeTok{cex.main=}\FloatTok{0.6}\NormalTok{,}
+        \DataTypeTok{args.legend =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{x=}\StringTok{"bottom"}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{4}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.6}\NormalTok{, }\DataTypeTok{bty=}\StringTok{\textquotesingle{}n\textquotesingle{}}\NormalTok{, }\DataTypeTok{inset=}\OperatorTok{{-}}\FloatTok{0.3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{pie-diagrams}{%
+\subsubsection{Pie Diagrams}\label{pie-diagrams}}
+
+A pie diagram, also known as sector diagram, is a graphic device
+consisting of a circle divided into sectors or pie-shaped pieces whose
+areas are proportional to the various parts into which the whole
+quantity is divided. The sectors are shaded or colored differently to
+show the relationship of parts to the whole. If space permits, the
+descriptive titles of the constituent parts should be placed
+horizontally on each sector, otherwise a key becomes necessary. It is
+used as an alternative to a component bar chart.
+
+\textbf{Example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{  }\KeywordTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{20}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{35}\NormalTok{)}
+\NormalTok{labels \textless{}{-}}\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{"food"}\NormalTok{,}\StringTok{"clothing"}\NormalTok{,}\StringTok{"house rent"}\NormalTok{,}\StringTok{"fuel \& light"}\NormalTok{, }\StringTok{"miscellaneous"}\NormalTok{)}
+\NormalTok{piepercent\textless{}{-}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{100}\OperatorTok{*}\NormalTok{x}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(x), }\DecValTok{1}\NormalTok{)}
+\KeywordTok{pie}\NormalTok{(x, }\DataTypeTok{labels =}\NormalTok{ piepercent, }\DataTypeTok{main =} \StringTok{"Pie Diagram"}\NormalTok{,}\DataTypeTok{col =} \KeywordTok{rainbow}\NormalTok{(}\KeywordTok{length}\NormalTok{(x)))}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, labels, }\DataTypeTok{cex =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{fill =} \KeywordTok{rainbow}\NormalTok{(}\KeywordTok{length}\NormalTok{(x)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{chapt2_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+(Continued \ldots{} I will upload the remaining sub-topics soon)
+
+
+\end{document}
