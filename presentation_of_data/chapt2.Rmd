@@ -3,8 +3,6 @@ title: "Presentation of Data"
 output:
   pdf_document: 
     keep_tex: yes
-    fig_width: 4
-    fig_height: 4
     fig_caption: yes
     toc: yes
   html_document: 
@@ -535,7 +533,8 @@ iii. divide every rectangle so drawn into parts equal in number to the number of
 **Example** Compare the budgets of families A and B with a suitable diagram.
 
 ```{r}
-items <- c('Food', 'Clothing', 'House Rent', 'Education', 'Litigation', 'Conventional Needs', 'Miscellaneous')
+items <- c('Food', 'Clothing', 'House Rent',
+          'Education', 'Litigation', 'Conventional Needs', 'Miscellaneous')
 familyA <-c(24,4,4,3,2,1,2)
 familyB <-c(60,14,16,6,10,6,8)
 df = data.frame(items, familyA, familyB)
@@ -573,6 +572,108 @@ piepercent<- round(100*x/sum(x), 1)
 pie(x, labels = piepercent, main = "Pie Diagram",col = rainbow(length(x)))
 legend("topright", labels, cex = 0.8, fill = rainbow(length(x)))
 ```
+
+## GRAPHS
+As already stated, diagrams are useful for representing spatial series. Diagrams fail when we want to represent a statistical series spread over a period of time, or a frequency distribution or two related variables in visual form. For such representations, graphs are employed.
+
+**Graphs present the data in a simple, clear and effective manner, facilitate comparison between two or more than two statistical series, and help us in appreciating their significance readily.** Another advantage of graphs is that they provide an overall picture of a statistical series. Graphs are **also sometimes used to make predictions and forecasts.** Certain partition values can also be located graphically. But graphs are less accurate as they do not give minute details. Moreover, they cost considerable expenditure and time. 
+
+## Construction of Graphs
+In the construction of a graph, the first step is to take a starting point, known as the origin, in the left-hand bottom corner of the graph paper. Two straight lines perpendicular to each other are drawn through the origin. The horizontal line is called the X-axis or abscissa and the vertical line is labelled as Y-axis or ordinate. The two lines together are known as co-ordinate axes. Some suitable scales are selected along X-axis and Y-axis. Independent variable is taken along X-axis and dependent variable along Y-axis. Points are plotted and joined to get the required graph. 
+
+While constructing a graph, the following points should be kept in mind:
+
+(i) A scale and the form of representation is to be selected in such a way that the true impression of the data to be represented is given by the graph.
+
+(ii) Every graph must have a clear and comprehensive title at top. Where necessary, sub-titles should be added.
+
+(iii) The source of the data must be given. A key and footnotes should be provided when necessary.
+
+(iv) The independent variable should always be placed on the horizontal axis.
+
+(v) The vertical scale should always begin with zero, otherwise the graph will give a false impression. If, however, the first item of the data is quite large, a scale-break should be shown between zero and next member.
+
+(vi) The horizontal axis does not have to begin with zero unless of course, the independent variable or the lower limit of the first class interval is zero. 
+
+(vii) The axes of the graph should be properly labelled. Labels should clearly state both the variable and the units, e.g. "Distance" and "Kilometre". "Sales" and "Rupees", etc.
+
+(viii) Curves if more than one, must be clearly distinguished either by different colours or by differentiated lines (solid, dashed, dot dashed).
+
+(ix) The graph should not be loaded with too many curves.
+
+Graphs can be divided into two main categories, namely: 
+
+(a) Graphs of Time-Series or Graphs of Historical Data, and  
+(b) Graphs of Frequency Distributions. The important graphs of frequency distributions are Histogram, Frequency Polygon, Frequency Curve and the Cumulative Frequency Curve or Ogive. 
+
+### Graph of Time Series—Historigram
+
+A curve showing changes in the value of one or more items from one period of time to the next is known as the graph of a time series. This curve is also called a Historigram. Thus a historigram displays variations in time series dealing with prices, production, imports, population, etc. To construct a historigram, time is taken along X-axis and the values of the variable along Y-axis. Points are plotted and are then connected by means of Straight line segments to get the "Historigram".
+
+**Example:** Following table gives the number of cars produced in Germany during the years 1929-1936. Draw a suitable graph.
+
+Years | No of Cars
+------|-----------
+1929  | 98
+1930  | 74
+1931  | 68
+1932  | 50
+1933  | 99
+1934  | 172
+1935  | 245
+1936  | 302
+
+Plotting a time series in R is very easy, following code snippets prepares the example data and plots it using the plot function:
+
+```{r}
+NoCars <- c(98,74,68,50,99,172,245,302)
+timeSeries <- ts(NoCars, start=c(1929,1), end=c(1936,1), frequency = 1)
+plot(timeSeries, main="Historigram", xlab="year", ylab="Number of Cars")
+```
+
+### Histogram
+A histogram consists of a set of adjacent rectangles whose bases are marked off by class boundaries (not class limits) on the X-axis and whose heights are proportional to the frequencies associated with respective classes. The area of each rectangle represents the respective class frequencies. This is one of the most important graphical representation of a frequency distribution. When the class-intervals are equal, the rectangles all have the same width and their heights directly represent the class frequencies, that is they are numerically proportional to the frequencies in the respective classes. 
+
+**Example:** Given below is the frequency distribution of mean annual death rates per 1,000 at ages 20-65 in each of 88 occupational groups. 
+
+Death Rates | Class boundaries | Frequency
+------------|------------------|----------
+3.5 - 4.4   | 3.45 - 4.45      |   1
+4.5 - 5.4   | 4.45 - 5.45      |   4
+5.5 - 6.4   | 5.45 - 6.45      |   5
+6.5 - 7.4   | 6.45 - 7.45      |   13
+7.5 - 8.4   | 7.45 - 8.45      |   12 
+8.5 - 9.4   | 8.45 - 9.45      |   19
+9.5 - 10.4  | 9.45 - 10.45     |   13
+10.5 - 11.4 | 10.45 - 11.45    |   10
+11.5 - 12.4 | 11.45 - 12.45    |   6
+12.5 - 13.4 | 12.45 - 13.45    |   4
+13.5 - 14.4 | 13.45 - 14.45    |   1
+------------|------------------|----------
+Total       |                  |   88
+
+The histogram of the above frequency distribution is shown below:
+
+![Histogram](./histogram.png)
+
+To reproduce the same histogram in R:
+```{r}
+sampleData <-c(7.5, 9.7, 10.3, 10.6,7.7, 4.6, 6.8, 9.3,
+8.2, 11.6,10.1, 9.1, 12.8,14.0,7.1, 8.9,
+6.2, 12.6,10.0, 9.7, 8.7, 8.1, 6.6, 10.1,
+8.9, 5.0, 11.1, 9.3, 5.5, 11.4,8.8, 3.9,
+7.8, 10.2,6.5,  6.2, 8.6, 10.6,8.8, 6.0,
+5.4, 9.2, 12.5, 10.3,9.6, 11.6,10.7,6.9,
+9.4, 12.0,7.8, 6.6, 11.9,10.4,10.8,9.0,
+9.9, 9.9, 6.5, 7.4, 10.4,8.1, 6.0, 8.8,
+10.9, 7.3,8.7, 8.6, 7.8, 4.6, 7.9, 9.4,
+10.8, 7.3,9.3, 7.7, 7.6, 6.6, 7.3, 11.4,
+7.4, 8.4, 12.4,9.4, 12.1,12.8,9.3, 10.9)
+brks = seq(3.45, 14.45, 1)
+hist(sampleData, breaks = brks, xaxt='n', ylim = range(0,20), labels = TRUE)
+axis(side = 1, at=brks, labels = brks, las=2)
+```
+
 
 (Continued ... I will upload the remaining sub-topics soon)
 
