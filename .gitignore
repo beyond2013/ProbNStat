@@ -1,9 +1,7 @@
-# Ignore everything
 /*
-# Except dot file gitignore and markdown files
-!.gitignore
+# Ignore everything except markdown files
 !*.md
-# Do not ignore fig directory
-!fig/
 .Rproj.user
-!presentation_of_data/
+!figs/
+!markdown/
+!pastpapers/
