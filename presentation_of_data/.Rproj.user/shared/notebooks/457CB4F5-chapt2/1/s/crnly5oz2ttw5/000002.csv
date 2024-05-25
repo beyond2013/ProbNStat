@@ -1,0 +1,3 @@
+"0","NoCars <- c(98,74,68,50,99,172,245,302)"
+"0","timeSeries <- ts(NoCars, start=c(1929,1), end=c(1936,1), frequency = 1)"
+"0","plot(timeSeries, main=""Historigram"", xlab=""year"", ylab=""Number of Cars"")"

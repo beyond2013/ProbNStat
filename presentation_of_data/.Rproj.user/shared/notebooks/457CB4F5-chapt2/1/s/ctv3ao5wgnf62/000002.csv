@@ -1,0 +1,5 @@
+"0","brks = seq(3.45, 14.45, 1)"
+"0","hist(sampleData, breaks = brks, xaxt='n', "
+"0","     ylim = range(0,20), labels = TRUE, "
+"0","     main = ""Histogram for frequency distribution of annual death rates"","
+"0","     xlab=""Class Boundaries"")"

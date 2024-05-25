@@ -1,0 +1,4 @@
+"0","x <-  c(50, 30, 20,15,35)"
+"0","labels <-  c(""food"",""clothing"",""house rent"",""fuel & light"", ""miscellaneous"")"
+"0","piepercent<- round(100*x/sum(x), 1)"
+"0","pie(x, labels = piepercent, main = ""Pie Diagram"",col = rainbow(length(x)))"

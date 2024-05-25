@@ -1,0 +1,11 @@
+"0","colors = c(""red"", ""blue"")"
+"0",""
+"0","division = c(""Peshawar"", ""Rawalpindi"", ""Sargodha"", ""Lahore"")"
+"0",""
+"0","Values <- matrix(c(64,33,31,40,21,19,60,32,28,65,35,30), nrow=4, ncol=3, byrow=TRUE)"
+"0",""
+"0","barplot(Values, main = ""Component bar chart showing population of 4 divisions"","
+"0","        names.arg = division, xlab = ""divisions"", ylab = ""Population"", col = colors)"
+"2","Error in barplot.default(Values, main = ""Component bar chart showing population of 4 divisions"",  : 
+  incorrect number of names
+"
