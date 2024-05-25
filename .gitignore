@@ -1,7 +1,3 @@
-/*
-# Ignore everything except markdown files
-!*.md
-.Rproj.user
-!figs/
-!markdown/
-!pastpapers/
+admin/
+datasets/
+pastpapers/
