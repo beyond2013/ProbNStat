@@ -1,3 +1,5 @@
 admin/
 datasets/
 pastpapers/
+*.pdf
+*.docx
